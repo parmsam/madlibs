@@ -1,37 +1,52 @@
 library(shiny)
+library(bslib)
+library(shinyvalidate)
+library(glue)
 
 generate_story <- function(noun, verb, adjective, adverb) {
-  glue::glue(
+  glue(
     "
-    Once upon a time, there was a {adjective} {noun} who loved to
-    {verb} {adverb}. It was the funniest thing ever!
-  "
+    Welcome to the Ultimate Mad Libs Adventure!
+
+    Deep in the enchanted forest, a {adjective} {noun} dreamed of the day it could {verb} {adverb}.
+    One magical morning, it finally happened—and the world was never the same again!
+
+    What will your next story be?
+    "
   )
 }
 
 ui <- fluidPage(
-  titlePanel("Mad Libs Game"),
+  theme = bs_theme(bootswatch = "minty", base_font = font_google("Roboto")),
+  titlePanel("🌟 Mad Libs Game: Create Your Own Story!"),
   sidebarLayout(
     sidebarPanel(
-      textInput("noun1", "Enter a noun:", ""),
-      textInput("verb", "Enter a verb:", ""),
-      textInput("adjective", "Enter an adjective:", ""),
-      textInput("adverb", "Enter an adverb:", ""),
-      actionButton("submit", "Create Story")
+      helpText("Fill in each blank to create your own silly story!"),
+      textInput("noun1", "Enter a noun (person, place, or thing):", ""),
+      textInput("verb", "Enter a verb (action word):", ""),
+      textInput("adjective", "Enter an adjective (describing word):", ""),
+      textInput("adverb", "Enter an adverb (how the action is done):", "")
     ),
     mainPanel(
       h3("Your Mad Libs Story:"),
-      textOutput("story")
+      verbatimTextOutput("story")
     )
   )
 )
 
-server <- function(input, output) {
-  story <- eventReactive(input$submit, {
-    generate_story(input$noun1, input$verb, input$adjective, input$adverb)
-  })
+server <- function(input, output, session) {
+  iv <- InputValidator$new()
+  iv$add_rule("noun1", sv_required(message = "Please enter a noun."))
+  iv$add_rule("verb", sv_required(message = "Please enter a verb."))
+  iv$add_rule("adjective", sv_required(message = "Please enter an adjective."))
+  iv$add_rule("adverb", sv_required(message = "Please enter an adverb."))
+  iv$enable()
+
   output$story <- renderText({
-    story()
+    if (!iv$is_valid()) {
+      return("Please fill in all fields to see your story!")
+    }
+    generate_story(input$noun1, input$verb, input$adjective, input$adverb)
   })
 }
 
