@@ -44,6 +44,8 @@ server <- function(input, output, session) {
 
   output$story <- renderText({
     if (!iv$is_valid()) {
+      cat("📝 User entered an input or loaded the app\n", file = stderr())
+      cat("💩 Waiting on use to complete filling in story fields... 💩\n", file = stderr())
       return("Please fill in all fields to see your story!")
     }
     generate_story(input$noun1, input$verb, input$adjective, input$adverb)
