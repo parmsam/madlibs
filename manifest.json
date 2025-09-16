@@ -758,6 +758,31 @@
         "RemoteSha": "1.11.1"
       }
     },
+    "shinyvalidate": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "shinyvalidate",
+        "Title": "Input Validation for Shiny Apps",
+        "Version": "0.1.2",
+        "Authors@R": "c(\n    person(\"Richard\", \"Iannone\", , \"rich@rstudio.com\", c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0003-3925-190X\")),\n    person(\"Joe\", \"Cheng\", , \"joe@rstudio.com\", c(\"aut\")),\n    person(family = \"RStudio\", role = c(\"cph\", \"fnd\"))\n    )",
+        "Description": "Improves the user experience of Shiny apps by helping to\n    provide feedback when required inputs are missing, or input values\n    are not valid.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://rstudio.github.io/shinyvalidate/,\nhttps://github.com/rstudio/shinyvalidate",
+        "Encoding": "UTF-8",
+        "Imports": "shiny (>= 1.6), htmltools (>= 0.5.1.1), rlang (>= 0.4.10),\nglue (>= 1.4.2)",
+        "RoxygenNote": "7.1.2",
+        "Suggests": "testthat, knitr, rmarkdown, covr",
+        "Config/testthat/edition": "3",
+        "NeedsCompilation": "no",
+        "Packaged": "2022-04-21 22:51:03 UTC; barret",
+        "Author": "Richard Iannone [aut, cre] (<https://orcid.org/0000-0003-3925-190X>),\n  Joe Cheng [aut],\n  RStudio [cph, fnd]",
+        "Maintainer": "Richard Iannone <rich@rstudio.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2022-04-21 23:30:02 UTC",
+        "Built": "R 4.3.0; ; 2023-04-12 15:01:42 UTC; unix"
+      }
+    },
     "sourcetools": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -841,7 +866,7 @@
   },
   "files": {
     "app.R": {
-      "checksum": "7a6be542ae1e2b41d97a75044fa1e65c"
+      "checksum": "e8228b1c801f1cc18254380b9190d1ac"
     }
   },
   "users": null
